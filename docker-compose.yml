@@ -1,32 +1,14 @@
-version: '3.8'
+# auth-service:
+#   build: ./auth-service
+#   ...
 
-services:
-  auth-service:
-    build:
-      context: ./auth-service
-    container_name: auth-service
-    ports:
-      - "8001:8000"
-    environment:
-      - DJANGO_SETTINGS_MODULE=auth_service.settings
+# video-service:
+#   build: ./video-service
+#   ...
 
-  frontend:
-    build:
-      context: ./frontend
-    container_name: frontend
-    ports:
-      - "8000:8000"
-    environment:
-      - DJANGO_SETTINGS_MODULE=frontend.settings
-    depends_on:
-      - auth-service
-      - video-service
-
-  video-service:
-    build:
-      context: ./video-service
-    container_name: video-service
-    ports:
-      - "8002:8000"
-    environment:
-      - DJANGO_SETTINGS_MODULE=video_service.settings
+frontend:
+  build: ./frontend
+  ports:
+    - "80:80"
+  networks:
+    - app-network
