@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Playlist</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center mt-5">Your Video Playlist</h2>
+        <div id="video-list"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: 'http://localhost:8002/api/videos/',  // The URL of the video-service playlist API
+                type: 'GET',
+                success: function(response) {
+                    var videoList = $('#video-list');
+                    if (response.videos && response.videos.length > 0) {
+                        response.videos.forEach(function(video) {
+                            videoList.append('<div class="card mb-3"><div class="card-body"><h5 class="card-title">' + video.title + '</h5><p class="card-text">' + video.description + '</p></div></div>');
+                        });
+                    } else {
+                        videoList.append('<p>No videos found in your playlist.</p>');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    alert('Error fetching videos');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
