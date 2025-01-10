@@ -9,6 +9,8 @@ db.sqlite3
 /static/
 *.log
 
+testproject.pem
+
 # Virtual environment folder
 djangoenv/
 
