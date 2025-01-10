@@ -1,14 +1,7 @@
-# auth-service:
-#   build: ./auth-service
-#   ...
-
-# video-service:
-#   build: ./video-service
-#   ...
-
-frontend:
-  build: ./frontend
-  ports:
-    - "80:80"
-  networks:
-    - app-network
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./frontend  # Directory where the Dockerfile for frontend is located
+    ports:
+      - "80:80"  # Expose port 80 of the container to port 80 on the host machine
