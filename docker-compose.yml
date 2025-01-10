@@ -2,6 +2,6 @@ version: '3'
 services:
   frontend:
     build:
-      context: ./frontend  # Directory where the Dockerfile for frontend is located
+      context: ./frontend
     ports:
-      - "80:80"  # Expose port 80 of the container to port 80 on the host machine
+      - "80:8000"
